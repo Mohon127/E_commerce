@@ -1,10 +1,14 @@
 from django.views import generic
+from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .form import CheckoutForm
 
 
 class Checkout(generic.View):
+    login_url = reverse_lazy('login')
+
     def get(self, *args, **kwargs):
         form = CheckoutForm()
         context = {
